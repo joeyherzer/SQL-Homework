@@ -1,44 +1,7 @@
-CREATE 6 TABLES FOR POSTRGES
-
-CREATE TABLE departments (
-dept_id int,
-dept_name text
-);
-
-CREATE TABLE dept_emp (
-emp_no int,
-dept_no text
-);
-
-CREATE TABLE dept_manager (
-dept_no text,
-emp_no int
-);
-
-CREATE TABLE employees (
-emp_no int,
-emp_title_id text,
-birth_date date,
-first_name text,
-last_name text,
-sex text,
-hire_date date
-);
-
-CREATE TABLE salaries (
-emp_no int,
-salary int
-);
-
-CREATE TABLE tites (
-title_id text,
-title text
-);
-
-Once you have a complete database, do the following:
+<h2>Once you have a complete database, do the following:</h2>
 
 
-List the following details of each employee: employee number, last name, first name, sex, and salary.
+<h3>List the following details of each employee: employee number, last name, first name, sex, and salary.</h3>
 
 select a.emp_no, a.last_name, a.first_name, a.sex, b.salary
 from public.employees a 
@@ -46,7 +9,7 @@ from public.employees a
 	on a.emp_no = b.emp_no
 
 
-List first name, last name, and hire date for employees who were hired in 1986.
+<h3>List first name, last name, and hire date for employees who were hired in 1986.</h3>
 
 select a.first_name, a.last_name, a.hire_date
 from public.employees a 
@@ -54,7 +17,7 @@ from public.employees a
 	and hire_date < '1/1/1987'
 
 
-List the manager of each department with the following information: department number, department name, the manager's employee number, last name, first name.
+<h3>List the manager of each department with the following information: department number, department name, the manager's employee number, last name, first name.</h3>
 
 SELECT a.dept_id, a.dept_name, b.emp_no, c.last_name, c.first_name
 FROM departments a 
@@ -64,7 +27,7 @@ JOIN employees c
 ON b.emp_no = c.emp_no;
 
 
-List the department of each employee with the following information: employee number, last name, first name, and department name.
+<h3>List the department of each employee with the following information: employee number, last name, first name, and department name.</h3>
 
 SELECT a.emp_no, b.last_name, b.first_name, c.dept_name
 FROM dept_emp a 
@@ -73,14 +36,14 @@ ON a.emp_no = b.emp_no
 JOIN departments c
 ON a.dept_no = c.dept_id;
 
-List first name, last name, and sex for employees whose first name is "Hercules" and last names begin with "B."
+<h3> List first name, last name, and sex for employees whose first name is "Hercules" and last names begin with "B." </h3>
 
 SELECT first_name, last_name, sex
 FROM employees
 WHERE first_name = 'Hercules'
 AND last_name LIKE 'B%';
 
-List all employees in the Sales department, including their employee number, last name, first name, and department name.
+<h3> List all employees in the Sales department, including their employee number, last name, first name, and department name. </h3>
 
 SELECT a.emp_no, b.last_name, b.first_name, c.dept_name
 FROM dept_emp a 
@@ -90,7 +53,7 @@ JOIN departments c
 ON a.dept_no = c.dept_id
 WHERE c.dept_name = 'Sales';
 
-List all employees in the Sales and Development departments, including their employee number, last name, first name, and department name.
+<h3> List all employees in the Sales and Development departments, including their employee number, last name, first name, and department name. </h3>
 SELECT a.emp_no, b.last_name, b.first_name, c.dept_name
 FROM dept_emp a 
 JOIN employees b
@@ -100,7 +63,7 @@ ON a.dept_no = c.dept_id
 WHERE c.dept_name in ('Sales','Development');
 
 
-In descending order, list the frequency count of employee last names, i.e., how many employees share each last name.
+<h3> In descending order, list the frequency count of employee last names, i.e., how many employees share each last name. </h3>
 
 SELECT last_name, COUNT(last_name) AS "frequency"
 FROM employees
